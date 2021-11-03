@@ -25,7 +25,7 @@ app.post('/users',(req,res)=>{
 app.route('/users/:id')
 // READ
 .get((req,res)=>{
-  User.findById(req.params.id, (err, data) => respond(err, data, res))
+  User.findById(req.params.id, (err, data) => respond(err, data, res));
 })
 // UPDATE
 .put((req,res)=>{
@@ -33,11 +33,11 @@ app.route('/users/:id')
     name: req.body.newData.name,
     email: req.body.newData.email,
     password: req.body.newData.password
-  }, (err, data) => respond(err, data, res))
+  }, (err, data) => respond(err, data, res));
 })
 // DELETE
 .delete((req,res)=>{
-  // User.findByIdAndDelete()
+  User.findByIdAndDelete(req.params.id, (err, data) => respond(err, data, res));
 })
 
 const respond = (err, data, res) => {
