@@ -15,11 +15,7 @@ app.listen(port, ()=>{
 
 // CREATE
 app.post('/users',(req,res)=>{
-  User.create({
-    name: req.body.newData.name,
-    email: req.body.newData.email,
-    password: req.body.newData.password
-  }, (err, data) => respond(err, data, res))
+  User.create({...req.body.newData}, (err, data) => respond(err, data, res))
 })
 
 app.route('/users/:id')
@@ -29,11 +25,7 @@ app.route('/users/:id')
 })
 // UPDATE
 .put((req,res)=>{
-  User.findByIdAndUpdate(req.params.id, {
-    name: req.body.newData.name,
-    email: req.body.newData.email,
-    password: req.body.newData.password
-  }, (err, data) => respond(err, data, res));
+  User.findByIdAndUpdate(req.params.id, {...req.body.newData}, (err, data) => respond(err, data, res));
 })
 // DELETE
 .delete((req,res)=>{
